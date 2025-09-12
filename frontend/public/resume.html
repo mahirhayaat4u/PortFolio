@@ -1,9 +1,10 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume-build</title>
+  <title>Estelle Darcy - Process Engineer</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,18 +57,16 @@
     }
     ul {
       list-style-position: inside;
-      list-style-type: none; 
       padding-left: 0;
     }
     li {
       margin-bottom: 8px;
       padding-left: 1.5em;
       text-indent: -1.5em;
-      list-style-type: none; 
     }
     li::before {
       
-      color: #60a5fa; /* Tailwind blue-400 */
+      color: black; /* Tailwind blue-400 */
       font-weight: bold;
       display: inline-block;
       width: 1em;
@@ -83,7 +82,7 @@
       font-size: 0.9rem;
     }
     .editable[contenteditable="true"] {
-      outline: 2px dashed #3b82f6; /* Tailwind blue-500 */
+      outline: 2px dashed black; /* Tailwind blue-500 */
       background-color: rgba(59, 130, 246, 0.1);
       cursor: text;
       padding: 2px;
@@ -233,56 +232,8 @@
       </section>
     </main>
   </div>
-<script>
-  const editBtn = document.getElementById('edit-btn');
-  const downloadBtn = document.getElementById('download-btn');
-  const editableElements = document.querySelectorAll('.editable, h2'); // include h2
-  let isEditing = false;
 
-  editBtn.addEventListener('click', () => {
-    isEditing = !isEditing;
-    if (isEditing) {
-      editBtn.textContent = 'Save Changes';
-      editBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
-      editBtn.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
-      editableElements.forEach(el => {
-        el.setAttribute('contenteditable', 'true');
-      });
-    } else {
-      editBtn.textContent = 'Edit Resume';
-      editBtn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
-      editBtn.classList.add('bg-green-600', 'hover:bg-green-700');
-      editableElements.forEach(el => {
-        el.setAttribute('contenteditable', 'false');
-      });
-    }
-  });
-
-  downloadBtn.addEventListener('click', function () {
-    if (isEditing) {
-      editBtn.click();
-    }
-
-    const element = document.getElementById('resume');
-    const opt = {
-      margin: 0,
-      filename: 'Estelle_Darcy_Resume.pdf',
-      image: { type: 'jpeg', quality: 1 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-      pagebreak: { mode: ['avoid-all'] }
-    };
-
-    html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdf) {
-      const totalPages = pdf.internal.getNumberOfPages();
-      if (totalPages > 1) {
-        pdf.deletePage(2); // keep only first
-      }
-    }).save();
-  });
-</script>
-
-  <!-- <script>
+  <script>
     const editBtn = document.getElementById('edit-btn');
     const downloadBtn = document.getElementById('download-btn');
     const editableElements = document.querySelectorAll('.editable');
@@ -330,8 +281,7 @@
         }
       }).save();
     });
-  </script> -->
+  </script>
 </body>
 </html>
- 
 
