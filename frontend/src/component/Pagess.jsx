@@ -5,7 +5,7 @@ import { FaBars, FaTimes, FaEnvelope, FaPhone, FaLinkedin, FaGithub } from "reac
 import { FaReact, FaNodeJs, FaJs, FaGithubSquare } from "react-icons/fa";
 import { SiExpress, SiMongodb, SiNextdotjs, SiTailwindcss, SiGit } from "react-icons/si";
 import { Briefcase } from "lucide-react";
-import ResumeEditor from './ResumeEditor';
+
 
 
 
