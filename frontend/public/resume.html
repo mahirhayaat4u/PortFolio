@@ -233,7 +233,7 @@
     </main>
   </div>
 
-  <script>
+  <!-- <script>
     const editBtn = document.getElementById('edit-btn');
     const downloadBtn = document.getElementById('download-btn');
     const editableElements = document.querySelectorAll('.editable');
@@ -281,7 +281,196 @@
         }
       }).save();
     });
-  </script>
+  </script> -->
+  <!-- PDF export helper CSS -->
+<!-- <style>
+  .pdf-export { --pdf-font-size: 11px; }
+  .pdf-export * { font-size: var(--pdf-font-size) !important; line-height: 1.05 !important; box-sizing: border-box; }
+  /* optional: make buttons visible during dev */
+  #edit-btn, #download-btn { cursor: pointer; }
+</style>
+
+<script>
+(async function () {
+  const editBtn = document.getElementById('edit-btn');
+  const downloadBtn = document.getElementById('download-btn');
+  const editableElements = () => document.querySelectorAll('.editable');
+  let isEditing = false;
+  if (!editBtn || !downloadBtn) {
+    console.error('Missing #edit-btn or #download-btn or #resume in DOM');
+    return;
+  }
+
+  // EDIT TOGGLE
+  editBtn.addEventListener('click', () => {
+    isEditing = !isEditing;
+    editBtn.textContent = isEditing ? 'Save Changes' : 'Edit Resume';
+    editBtn.classList.toggle('bg-yellow-500', isEditing);
+    editBtn.classList.toggle('bg-green-600', !isEditing);
+    editableElements().forEach(el => el.setAttribute('contenteditable', isEditing ? 'true' : 'false'));
+  });
+
+  // DOWNLOAD -> single-page A4
+  downloadBtn.addEventListener('click', async () => {
+    if (isEditing) editBtn.click(); // save before export
+    const el = document.getElementById('resume');
+    if (!el) { alert('No #resume element found'); return; }
+
+    await ensureLibs();
+
+    // save styles
+    const origWidth = el.style.width || '';
+    const origPdfFont = getComputedStyle(el).getPropertyValue('--pdf-font-size') || '11px';
+    el.classList.add('pdf-export');
+    el.style.setProperty('--pdf-font-size', '11px');
+    el.style.width = '190mm'; // force printable width
+
+    await document.fonts?.ready;
+    await new Promise(r => setTimeout(r, 120));
+
+    const dpi = 96;
+    const marginMM = 10;
+    const pageWmm = 210, pageHmm = 297;
+    const desiredWmm = pageWmm - marginMM * 2;
+    const desiredHmm = pageHmm - marginMM * 2;
+    const desiredWpx = desiredWmm / 25.4 * dpi;
+    const desiredHpx = desiredHmm / 25.4 * dpi;
+
+    let canvas;
+    let fit = false;
+    const maxIter = 6;
+    for (let i = 0; i < maxIter; ++i) {
+      canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+      const ratio = desiredWpx / canvas.width;
+      const scaledHpx = canvas.height * ratio;
+      if (scaledHpx <= desiredHpx) { fit = true; break; }
+      // reduce export font-size and retry
+      const cur = parseFloat(getComputedStyle(el).getPropertyValue('--pdf-font-size')) || 11;
+      const next = Math.max(8, cur * 0.92);
+      el.style.setProperty('--pdf-font-size', next + 'px');
+      await new Promise(r => setTimeout(r, 80));
+    }
+
+    // fallback: ensure we have a canvas
+    if (!canvas) canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+
+    // build PDF (detect jsPDF)
+    const jsPDFConstructor = window.jspdf?.jsPDF || window.jsPDF;
+    if (!jsPDFConstructor) { alert('jsPDF not loaded'); restore(); return; }
+    const pdf = new jsPDFConstructor('p', 'mm', 'a4');
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+
+    // compute final image size in mm
+    const finalWmm = desiredWmm;
+    const ratio = (desiredWpx / canvas.width);
+    let finalHmm = (canvas.height * ratio) / dpi * 25.4;
+    if (finalHmm > desiredHmm) {
+      const scaleDown = desiredHmm / finalHmm;
+      finalHmm *= scaleDown;
+    }
+
+    const x = (pageW - finalWmm) / 2;
+    const y = (pageH - finalHmm) / 2;
+    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+    pdf.addImage(imgData, 'JPEG', x, y, finalWmm, finalHmm);
+    pdf.save('Estelle_Darcy_Resume.pdf');
+
+    restore();
+
+    function restore() {
+      el.classList.remove('pdf-export');
+      el.style.width = origWidth;
+      el.style.setProperty('--pdf-font-size', origPdfFont);
+    }
+  });
+
+  // load libs if missing
+  async function ensureLibs() {
+    if (!window.html2canvas) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    if (!window.jspdf && !window.jsPDF) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+    if (!window.jsPDF && window.jspdf && window.jspdf.jsPDF) window.jsPDF = window.jspdf.jsPDF;
+  }
+
+  function loadScript(src) {
+    return new Promise((res, rej) => {
+      if (document.querySelector(`script[src="${src}"]`)) return res();
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = res;
+      s.onerror = () => rej(new Error('Failed to load ' + src));
+      document.head.appendChild(s);
+    });
+  }
+})();
+</script> -->
+<script>
+  const editBtn = document.getElementById('edit-btn');
+  const downloadBtn = document.getElementById('download-btn');
+  const editableElements = document.querySelectorAll('.editable');
+  let isEditing = false;
+
+  // --- Edit Button ---
+  editBtn.addEventListener('click', () => {
+    isEditing = !isEditing;
+    editBtn.textContent = isEditing ? 'Save Changes' : 'Edit Resume';
+    editBtn.classList.toggle('bg-yellow-500', isEditing);
+    editBtn.classList.toggle('bg-green-600', !isEditing);
+    editableElements.forEach(el =>
+      el.setAttribute('contenteditable', isEditing ? 'true' : 'false')
+    );
+  });
+
+  // --- Download Button ---
+  downloadBtn.addEventListener('click', async () => {
+    if (isEditing) editBtn.click();
+
+    const el = document.getElementById('resume');
+    if (!el) return;
+
+    // Load libs if missing
+    if (!window.html2canvas) await loadScript("https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js");
+    if (!window.jspdf && !window.jsPDF) {
+      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");
+      if (window.jspdf?.jsPDF) window.jsPDF = window.jspdf.jsPDF;
+    }
+
+    // Render with html2canvas
+    const canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    // Calculate scale factor to fit into A4 page
+    const imgWidth = pageWidth;
+    let imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    if (imgHeight > pageHeight) {
+      // scale down further if taller than page
+      const scale = pageHeight / imgHeight;
+      imgHeight *= scale;
+    }
+
+    const x = (pageWidth - imgWidth) / 2;
+    const y = (pageHeight - imgHeight) / 2;
+
+    pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
+    pdf.save("Estelle_Darcy_Resume.pdf");
+  });
+
+  function loadScript(src) {
+    return new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = res;
+      s.onerror = () => rej(new Error("Failed to load " + src));
+      document.head.appendChild(s);
+    });
+  }
+</script>
+
 </body>
 </html>
 
