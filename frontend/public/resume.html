@@ -1,0 +1,337 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estelle Darcy - Process Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container {
+      max-width: 8.5in;
+      margin: auto;
+      padding: 0.5in;
+      background: #ffffff; /* Tailwind gray-800 */
+      color: #000000; /* Tailwind gray-300 */
+      box-shadow: 0 0 0.5in rgba(255,255,255,0.1);
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: black;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      border-bottom: 2px solid #4b5563; /* Tailwind gray-600 */
+      padding-bottom: 8px;
+      margin-top: 24px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: black;
+    }
+    .contact-info {
+      font-size: 0.9rem;
+      color: black; /* Tailwind gray-400 */
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: black; /* Tailwind gray-50 */
+    }
+    .date {
+      float: right;
+      color: black; /* Tailwind gray-400 */
+      font-weight: 500;
+    }
+    ul {
+      list-style-position: inside;
+      list-style-type: none; 
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      padding-left: 1.5em;
+      text-indent: -1.5em;
+      list-style-type: none; 
+    }
+    li::before {
+      
+      color: #60a5fa; /* Tailwind blue-400 */
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 16px 0;
+    }
+    .skill-item {
+      font-size: 0.9rem;
+    }
+    .editable[contenteditable="true"] {
+      outline: 2px dashed #3b82f6; /* Tailwind blue-500 */
+      background-color: rgba(59, 130, 246, 0.1);
+      cursor: text;
+      padding: 2px;
+      border-radius: 4px;
+    }
+
+    /* Print styles for PDF generation */
+    @media print {
+      body {
+        background-color: white !important;
+      }
+      .no-print {
+        display: none;
+      }
+      .container {
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: #333 !important;
+      }
+      h1, h2, .section-title {
+        color: black !important;
+      }
+      p, li, div, span {
+        color: #333 !important;
+      }
+      .text-gray-400, .contact-info, .date {
+        color: #555 !important;
+      }
+      h2 {
+        border-bottom-color: #333 !important;
+      }
+      li::before {
+        color: #333 !important;
+      }
+      b {
+          color: black !important;
+      }
+    }
+
+    #resume {
+      width: 8.5in;
+      min-height: 11in;
+      overflow: hidden;
+    }
+    #resume * {
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body class="bg-black p-8">
+
+  <div class="text-center mb-8 no-print space-x-4">
+    <button id="edit-btn" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors shadow-md">
+      Edit Resume
+    </button>
+    <button id="download-btn" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors shadow-md">
+      Download as PDF
+    </button>
+  </div>
+
+  <div class="container" id="resume">
+    <header class="text-center mb-6">
+      <h1 class="editable">Estelle Darcy</h1>
+      <p class="text-xl tracking-widest text-black editable">PROCESS ENGINEER</p>
+      <div class="contact-info mt-4 editable">
+        <span>123 Anywhere St., Any City</span> |
+        <span>hello@reallygreatsite.com</span> |
+        <span>www.reallygreatsite.com</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="summary mb-4">
+        <h2>Summary</h2>
+        <p class="leading-relaxed editable">
+          Practical Engineer with Significant Experience in Process Design. I have worked with some
+          organizations, ensuring a grounded approach to my profession, leveraging my expertise to optimize
+          processes and deliver innovative solutions that meet business objectives.
+        </p>
+      </section>
+
+      <section class="experience mb-4">
+        <h2>Professional Experience</h2>
+        <div>
+          <p class="section-title editable">Instrument Tech, Morcelle Program <span class="date editable">Jan 2024 - Present</span></p>
+          <ul class="mt-2 editable">
+            <li>Led development of an advanced automation system, achieving a 15% increase in operational efficiency.</li>
+            <li>Streamlined manufacturing processes, reducing production costs by 10%.</li>
+            <li>Implemented preventive maintenance strategies, resulting in a 20% decrease in equipment downtime.</li>
+          </ul>
+        </div>
+        <div class="mt-6">
+          <p class="section-title editable">Internship, XarrowAI Industries <span class="date editable">Jun 2022 - Aug 2022</span></p>
+          <ul class="mt-2 editable">
+            <li>Designed and optimised a robotic control system, realizing a 12% performance improvement.</li>
+            <li>Coordinated testing and validation, ensuring compliance with industry standards.</li>
+            <li>Provided technical expertise, contributing to a 15% reduction in system failures.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="projects mb-4">
+        <h2>Projects</h2>
+        <div>
+          <p class="section-title editable">Industrial Basics and General Application <span class="date editable">Jan 2023 - Jun 2023</span></p>
+          <p class="text-sm text-black italic editable">University of Engineering Process Cohort</p>
+          <ul class="mt-2 editable">
+            <li>Automotive Technology.</li>
+            <li>Technological advancements within the current Chemical & Process Industry".</li>
+            <li>Other relevant information.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="skills mb-4">
+        <h2>Skills</h2>
+        <div class="skills-grid editable">
+          <div class="skill-item">Prototyping Tools</div>
+          <div class="skill-item">Interaction Design</div>
+          <div class="skill-item">Accessibility</div>
+          <div class="skill-item">User Research</div>
+          <div class="skill-item">Visual Design</div>
+          <div class="skill-item">Responsive Design</div>
+        </div>
+      </section>
+
+      <section class="education mb-4">
+        <h2>Education</h2>
+        <div>
+          <p class="section-title editable">Bachelor of Design in Process Engineering <span class="date editable">Sep 2019 - Sep 2023</span></p>
+          <p class="text-sm text-black italic editable">Engineering University</p>
+          <ul class="mt-2 editable">
+            <li>Relevant coursework in Process Design and Project Management.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="additional-info">
+        <h2>Additional Information</h2>
+        <ul class="editable">
+          <li><b>Languages:</b> English, French, Mandarin.</li>
+          <li><b>Certifications:</b> Professional Design Engineer (PDE) License, Project Management Tech (PMT), Structural Process Design (SPD).</li>
+          <li><b>Awards/Activities:</b> Most Innovative Intern of the Year (2022), Overall Best Intern, Division Two (2022), Onboarding Project Lead (2024)</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+<script>
+  const editBtn = document.getElementById('edit-btn');
+  const downloadBtn = document.getElementById('download-btn');
+  const editableElements = document.querySelectorAll('.editable, h2'); // include h2
+  let isEditing = false;
+
+  editBtn.addEventListener('click', () => {
+    isEditing = !isEditing;
+    if (isEditing) {
+      editBtn.textContent = 'Save Changes';
+      editBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+      editBtn.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
+      editableElements.forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+      });
+    } else {
+      editBtn.textContent = 'Edit Resume';
+      editBtn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
+      editBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+      editableElements.forEach(el => {
+        el.setAttribute('contenteditable', 'false');
+      });
+    }
+  });
+
+  downloadBtn.addEventListener('click', function () {
+    if (isEditing) {
+      editBtn.click();
+    }
+
+    const element = document.getElementById('resume');
+    const opt = {
+      margin: 0,
+      filename: 'Estelle_Darcy_Resume.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      pagebreak: { mode: ['avoid-all'] }
+    };
+
+    html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdf) {
+      const totalPages = pdf.internal.getNumberOfPages();
+      if (totalPages > 1) {
+        pdf.deletePage(2); // keep only first
+      }
+    }).save();
+  });
+</script>
+
+  <!-- <script>
+    const editBtn = document.getElementById('edit-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const editableElements = document.querySelectorAll('.editable');
+    let isEditing = false;
+
+    editBtn.addEventListener('click', () => {
+      isEditing = !isEditing;
+      if (isEditing) {
+        editBtn.textContent = 'Save Changes';
+        editBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+        editBtn.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
+        editableElements.forEach(el => {
+          el.setAttribute('contenteditable', 'true');
+        });
+      } else {
+        editBtn.textContent = 'Edit Resume';
+        editBtn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
+        editBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+        editableElements.forEach(el => {
+          el.setAttribute('contenteditable', 'false');
+        });
+      }
+    });
+
+    downloadBtn.addEventListener('click', function () {
+      if (isEditing) {
+        editBtn.click();
+      }
+
+      const element = document.getElementById('resume');
+      const opt = {
+        margin: 0,
+        filename: 'Estelle_Darcy_Resume.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid-all'] }
+      };
+
+      html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdf) {
+        const totalPages = pdf.internal.getNumberOfPages();
+        if (totalPages > 1) {
+          // scale down if more than 1 page
+          pdf.deletePage(2); // keep only first
+        }
+      }).save();
+    });
+  </script> -->
+</body>
+</html>
+ 
+

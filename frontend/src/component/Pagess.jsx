@@ -5,6 +5,8 @@ import { FaBars, FaTimes, FaEnvelope, FaPhone, FaLinkedin, FaGithub } from "reac
 import { FaReact, FaNodeJs, FaJs, FaGithubSquare } from "react-icons/fa";
 import { SiExpress, SiMongodb, SiNextdotjs, SiTailwindcss, SiGit } from "react-icons/si";
 import { Briefcase } from "lucide-react";
+import ResumeEditor from './ResumeEditor';
+
 
 
 // Using inline SVGs to avoid dependencies for a single-file setup.
@@ -604,7 +606,7 @@ const Footer = () => (
 // -- Main App Component --
 export default function Pagess() {
   return (
-    <div className="bg-gray-900 text-white font-sans antialiased">
+    <div className="bg-gray-900 text-white font-sans overflow-x-hidden antialiased">
         <Header />
         <main>
             <Hero />
@@ -612,7 +614,9 @@ export default function Pagess() {
             <Skills />
             <Experience/>
             <Projects />
+            {/* <ResumeEditor/> */}
             <Contact />
+          
         </main>
         <Footer />
     </div>
