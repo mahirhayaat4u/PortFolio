@@ -329,7 +329,7 @@ const Hero = () => {
             custom={3}
           >
             <motion.a
-              href="https://drive.google.com/file/d/1GedO2exz_ebPqWbVuGIuOdqUEvPQxOiZ/view?usp=sharing" // Placeholder link
+              href="https://drive.google.com/file/d/1oIbmgZYvo3qO6jvU1ASKNg3hE22GKkN6/view?usp=sharing" // Placeholder link
               download
               className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
               whileHover={{ scale: 1.05 }}
@@ -525,6 +525,14 @@ const Experience = () => {
       description:
         "Completed a 6-week IBM SkillsBuild Summer Internship focused on Front-end Web Development using React.js, JavaScript, and Tailwind CSS. Developed responsive and user-friendly interfaces, gaining hands-on experience in real-world project environments.",
     },
+    {
+  title: "Full Stack MERN Developer Trainee",
+  company: "Self-Learning / Personal Development",
+  duration: "June 2023 – October 2023",
+  description:
+    "Learned and implemented full-stack development using React, Node.js, Express, and MongoDB. Built real-world projects including an EdTech platform and donation portal with secure authentication and responsive UIs."
+}
+
   ];
 
   return (
