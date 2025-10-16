@@ -391,7 +391,7 @@ const Hero = () => {
               }}
             />
             <img
-              src="https://media.licdn.com/dms/image/v2/D4E03AQF--BEKiCKjJw/profile-displayphoto-crop_800_800/B4EZkuDk2wGoAQ-/0/1757414318439?e=1760572800&v=beta&t=EugncUZM4T7Q-drxixoRuVF_RcfJN2Yoz2niJ46qKSQ"
+              src="https://avatars.githubusercontent.com/u/89286205?v=4"
               alt="Mahir Hayaat"
               className="relative w-full h-full object-cover rounded-full border-4 border-gray-700 shadow-2xl z-10"
             />
