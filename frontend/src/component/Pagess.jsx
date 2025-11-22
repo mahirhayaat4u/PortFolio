@@ -608,16 +608,18 @@ const Projects = () => {
         "bcrypt",
         "Tailwind CSS",
       ],
-      github: "https://github.com/mahirhayaat4u", // replace with actual repo if available
-      demo: "https://your-edtech-platform-demo-link.com", // replace with real demo link
+      github: "https://github.com/mahirhayaat4u", 
+      demo: "https://your-edtech-platform-demo-link.com",
+      image: "/path-to-your-image.jpg" 
     },
     {
       title: "Kindness for Well-Being",
       description:
         "A transparent donation platform connecting donors, NGOs, and people in need. Focused on reducing hunger and ensuring secure, efficient donation management.",
       stack: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
-      github: "https://github.com/mahirhayaat4u", // replace with actual repo if available
-      demo: "https://charity-wbsite.vercel.app/", // replace with actual live link
+      github: "https://github.com/mahirhayaat4u", 
+      demo: "https://charity-wbsite.vercel.app/", 
+       image: "/path-to-your-image.jpg" 
     },
     {
       title: "Portfolio Website",
@@ -625,7 +627,8 @@ const Projects = () => {
         "A dynamic and responsive personal portfolio to showcase my skills, experience, and projects. Built with modern web technologies and optimized for performance.",
       stack: ["React.js", "Tailwind CSS", "Framer Motion"],
       github: "https://github.com/mahirhayaat4u", // Replace with actual repository
-      demo: "https://mahir-hayaat-portfolio.vercel.app/", // Your actual portfolio URL
+      demo: "https://mahir-hayaat-portfolio.vercel.app/",
+        image: "/path-to-your-image.jpg" 
     },
   ];
 
@@ -640,7 +643,7 @@ const Projects = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           My Projects
         </h2>
-        <motion.div
+        {/* <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
           initial="hidden"
           whileInView="visible"
@@ -701,7 +704,81 @@ const Projects = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
+        <motion.div
+  className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{ staggerChildren: 0.2 }}
+>
+  {projectData.map((project, index) => (
+    <motion.div
+      key={index}
+      className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 flex flex-col group" // Added 'group' for child hover effects
+      variants={cardVariants}
+      whileHover={{ y: -10, scale: 1.03 }}
+    >
+      {/* --- New Image Section --- */}
+      <div className="relative h-48 w-full overflow-hidden">
+        <img
+          src={project.image} // Make sure your data has this property
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        {/* Optional: Gradient overlay to blend image into card slightly */}
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+      {/* ------------------------- */}
+
+      <div className="p-6 flex-grow flex flex-col">
+        <h3 className="text-2xl font-bold text-white mb-3">
+          {project.title}
+        </h3>
+        <p className="text-gray-400 mb-4 flex-grow">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="bg-gray-700 text-cyan-300 text-xs font-semibold px-3 py-1 rounded-full"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+        <div className="mt-auto flex space-x-4">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center transition-colors"
+          >
+            GitHub
+          </a>
+          {project.title === "EdTech Platform" ? (
+            <button
+              disabled
+              className="bg-gray-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center cursor-not-allowed opacity-60"
+            >
+              Live Demo
+            </button>
+          ) : (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center transition-colors"
+            >
+              Live Demo
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  ))}
+</motion.div>
       </div>
     </AnimatedSection>
   );
