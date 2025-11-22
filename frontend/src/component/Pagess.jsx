@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import edtechImg from "../assets/Screenshot_2025-11-22_144603.png";
+import kindnessImg from "../assets/Screenshot_2025-11-22_144640.png";
+import portfolioImg from "../assets/Screenshot_2025-11-22_144404.png";
 import {
   FaBars,
   FaTimes,
@@ -607,7 +610,7 @@ const Projects = () => {
       ],
       github: "https://github.com/mahirhayaat4u",
       demo: "https://edtech-wbpo.vercel.app/",
-      image: "/frontend/src/assets/Screenshot 2025-11-22 144603.png"
+      image: edtechImg,
     },
     {
       title: "Kindness for Well-Being",
@@ -617,7 +620,7 @@ const Projects = () => {
       github: "https://github.com/mahirhayaat4u",
       demo: "https://charity-wbsite.vercel.app/",
 
-      image: "/frontend/src/assets/Screenshot 2025-11-22 144640.png"
+      image: kindnessImg,
     },
     {
       title: "Portfolio Website",
@@ -626,7 +629,7 @@ const Projects = () => {
       stack: ["React.js", "Tailwind CSS", "Framer Motion"],
       github: "https://github.com/mahirhayaat4u", // Replace with actual repository
       demo: "https://mahir-hayaat-portfolio.vercel.app/",
-      image: "/frontend/src/assets/Screenshot 2025-11-22 144404.png"
+      image: portfolioImg,
 
     },
   ];
