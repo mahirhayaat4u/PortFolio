@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import edtechImg from "../assets/Screenshot_2025-11-22_144603.png";
-import kindnessImg from "../assets/Screenshot_2025-11-22_144640.png";
-import portfolioImg from "../assets/Screenshot_2025-11-22_144404.png";
+import edtechImg from "../../public/Screenshot_2025-11-22_144603.png";
+import kindnessImg from "../../public/Screenshot_2025-11-22_144640.png";
+import portfolioImg from "../../public/Screenshot 2025-11-22 144404.png";
 import {
   FaBars,
   FaTimes,
