@@ -756,14 +756,7 @@ const Projects = () => {
                   >
                     GitHub
                   </a>
-                  {project.title === "EdTech Platform" ? (
-                    <button
-
-                      className="bg-gray-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center cursor-not-allowed opacity-60"
-                    >
-                      Live Demo
-                    </button>
-                  ) : (
+                  {(
                     <a
                       href={project.demo}
                       target="_blank"
