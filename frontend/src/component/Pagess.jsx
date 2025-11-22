@@ -170,11 +170,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-gray-900/80 backdrop-blur-sm shadow-lg"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
+        ? "bg-gray-900/80 backdrop-blur-sm shadow-lg"
+        : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <motion.div
@@ -526,12 +525,12 @@ const Experience = () => {
         "Completed a 6-week IBM SkillsBuild Summer Internship focused on Front-end Web Development using React.js, JavaScript, and Tailwind CSS. Developed responsive and user-friendly interfaces, gaining hands-on experience in real-world project environments.",
     },
     {
-  title: "Full Stack MERN Developer Trainee",
-  company: "Self-Learning / Personal Development",
-  duration: "June 2023 – October 2023",
-  description:
-    "Learned and implemented full-stack development using React, Node.js, Express, and MongoDB. Built real-world projects including an EdTech platform and donation portal with secure authentication and responsive UIs."
-}
+      title: "Full Stack MERN Developer Trainee",
+      company: "Self-Learning / Personal Development",
+      duration: "June 2023 – October 2023",
+      description:
+        "Learned and implemented full-stack development using React, Node.js, Express, and MongoDB. Built real-world projects including an EdTech platform and donation portal with secure authentication and responsive UIs."
+    }
 
   ];
 
@@ -549,9 +548,8 @@ const Experience = () => {
           {experienceData.map((item, index) => (
             <motion.div
               key={index}
-              className={`relative flex flex-col md:flex-row md:items-center mb-16 ${
-                index % 2 === 0 ? "md:flex-row-reverse" : ""
-              }`}
+              className={`relative flex flex-col md:flex-row md:items-center mb-16 ${index % 2 === 0 ? "md:flex-row-reverse" : ""
+                }`}
               initial={{
                 opacity: 0,
                 x: isMobile ? 50 : index % 2 === 0 ? 80 : -80,
@@ -567,11 +565,10 @@ const Experience = () => {
 
               {/* Card */}
               <div
-                className={`bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-800 w-full md:w-[46%] ${
-                  index % 2 === 0
-                    ? "md:mr-auto md:text-right"
-                    : "md:ml-auto md:text-left"
-                }`}
+                className={`bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-800 w-full md:w-[46%] ${index % 2 === 0
+                  ? "md:mr-auto md:text-right"
+                  : "md:ml-auto md:text-left"
+                  }`}
               >
                 <h3 className="text-xl font-bold text-cyan-400">
                   {item.title}
@@ -608,18 +605,19 @@ const Projects = () => {
         "bcrypt",
         "Tailwind CSS",
       ],
-      github: "https://github.com/mahirhayaat4u", 
-      demo: "https://your-edtech-platform-demo-link.com",
-      image: "/path-to-your-image.jpg" 
+      github: "https://github.com/mahirhayaat4u",
+      demo: "https://edtech-wbpo.vercel.app/",
+      image: "/frontend/src/assets/Screenshot 2025-11-22 144603.png"
     },
     {
       title: "Kindness for Well-Being",
       description:
         "A transparent donation platform connecting donors, NGOs, and people in need. Focused on reducing hunger and ensuring secure, efficient donation management.",
       stack: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
-      github: "https://github.com/mahirhayaat4u", 
-      demo: "https://charity-wbsite.vercel.app/", 
-       image: "/path-to-your-image.jpg" 
+      github: "https://github.com/mahirhayaat4u",
+      demo: "https://charity-wbsite.vercel.app/",
+
+      image: "/frontend/src/assets/Screenshot 2025-11-22 144640.png"
     },
     {
       title: "Portfolio Website",
@@ -628,7 +626,8 @@ const Projects = () => {
       stack: ["React.js", "Tailwind CSS", "Framer Motion"],
       github: "https://github.com/mahirhayaat4u", // Replace with actual repository
       demo: "https://mahir-hayaat-portfolio.vercel.app/",
-        image: "/path-to-your-image.jpg" 
+      image: "/frontend/src/assets/Screenshot 2025-11-22 144404.png"
+
     },
   ];
 
@@ -706,79 +705,79 @@ const Projects = () => {
           ))}
         </motion.div> */}
         <motion.div
-  className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.2 }}
-  transition={{ staggerChildren: 0.2 }}
->
-  {projectData.map((project, index) => (
-    <motion.div
-      key={index}
-      className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 flex flex-col group" // Added 'group' for child hover effects
-      variants={cardVariants}
-      whileHover={{ y: -10, scale: 1.03 }}
-    >
-      {/* --- New Image Section --- */}
-      <div className="relative h-48 w-full overflow-hidden">
-        <img
-          src={project.image} // Make sure your data has this property
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        {/* Optional: Gradient overlay to blend image into card slightly */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
-      {/* ------------------------- */}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ staggerChildren: 0.2 }}
+        >
+          {projectData.map((project, index) => (
+            <motion.div
+              key={index}
+              className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 flex flex-col group" // Added 'group' for child hover effects
+              variants={cardVariants}
+              whileHover={{ y: -10, scale: 1.03 }}
+            >
+              {/* --- New Image Section --- */}
+              <div className="relative h-48 w-full overflow-hidden">
+                <img
+                  src={project.image} // Make sure your data has this property
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                {/* Optional: Gradient overlay to blend image into card slightly */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+              {/* ------------------------- */}
 
-      <div className="p-6 flex-grow flex flex-col">
-        <h3 className="text-2xl font-bold text-white mb-3">
-          {project.title}
-        </h3>
-        <p className="text-gray-400 mb-4 flex-grow">
-          {project.description}
-        </p>
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.stack.map((tech) => (
-            <span
-              key={tech}
-              className="bg-gray-700 text-cyan-300 text-xs font-semibold px-3 py-1 rounded-full"
-            >
-              {tech}
-            </span>
+              <div className="p-6 flex-grow flex flex-col">
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 mb-4 flex-grow">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="bg-gray-700 text-cyan-300 text-xs font-semibold px-3 py-1 rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-auto flex space-x-4">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center transition-colors"
+                  >
+                    GitHub
+                  </a>
+                  {project.title === "EdTech Platform" ? (
+                    <button
+
+                      className="bg-gray-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center cursor-not-allowed opacity-60"
+                    >
+                      Live Demo
+                    </button>
+                  ) : (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center transition-colors"
+                    >
+                      Live Demo
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
           ))}
-        </div>
-        <div className="mt-auto flex space-x-4">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center transition-colors"
-          >
-            GitHub
-          </a>
-          {project.title === "EdTech Platform" ? (
-            <button
-              disabled
-              className="bg-gray-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center cursor-not-allowed opacity-60"
-            >
-              Live Demo
-            </button>
-          ) : (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg w-full text-center transition-colors"
-            >
-              Live Demo
-            </a>
-          )}
-        </div>
-      </div>
-    </motion.div>
-  ))}
-</motion.div>
+        </motion.div>
       </div>
     </AnimatedSection>
   );
