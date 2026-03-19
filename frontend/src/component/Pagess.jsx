@@ -519,23 +519,29 @@ const Experience = () => {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  const experienceData = [
-    {
-      title: "Frontend Developer Intern",
-      company: "IBM SkillBuild (in collaboration with CSRBOX)",
-      duration: "June 2024 – August 2024",
-      description:
-        "Completed a 6-week IBM SkillsBuild Summer Internship focused on Front-end Web Development using React.js, JavaScript, and Tailwind CSS. Developed responsive and user-friendly interfaces, gaining hands-on experience in real-world project environments.",
-    },
-    {
-      title: "Full Stack MERN Developer Trainee",
-      company: "Self-Learning / Personal Development",
-      duration: "June 2023 – October 2023",
-      description:
-        "Learned and implemented full-stack development using React, Node.js, Express, and MongoDB. Built real-world projects including an EdTech platform and donation portal with secure authentication and responsive UIs."
-    }
-
-  ];
+ const experienceData = [
+  {
+    title: "Full Stack Developer",
+    company: "ByondxTech",
+    duration: "Dec 2025 – Present",
+    description:
+      "Developing and maintaining a MERN-based eCommerce platform with authentication, cart, and order management. Built REST APIs, implemented JWT authentication, and integrated Razorpay for secure payments. Designed admin dashboard and optimized MongoDB queries for performance."
+  },
+  {
+    title: "Frontend Developer Intern",
+    company: "IBM SkillsBuild (in collaboration with CSRBOX)",
+    duration: "June 2024 – Aug 2024",
+    description:
+      "Completed a 6-week internship focused on React.js and Tailwind CSS. Developed responsive UI components and improved frontend performance in a real-world project environment."
+  },
+  {
+    title: "Full Stack MERN Developer Trainee",
+    company: "Self-Learning / Personal Projects",
+    duration: "June 2023 – Oct 2023",
+    description:
+      "Built full-stack applications using React, Node.js, Express, and MongoDB, including an EdTech platform and donation portal with authentication and responsive UI."
+  }
+];
 
   return (
     <section id="experience" className="py-20 bg-gray-950">
